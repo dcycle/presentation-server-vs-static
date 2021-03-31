@@ -1,0 +1,271 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Server vs Static stacks</title>
+
+    <style>
+    .y {
+      background:yellow;
+      color: black;
+    }
+    .g {
+      background:#7FFF00;
+      color: black;
+    }
+    .r {
+      background:red;
+      color: black;
+    }
+    </style>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section>
+          <h2>Dcycle</h2>
+          <h3>Static stacks are cheaper than server stacks</h3>
+        </section>
+
+        <section>
+          <h3>MERN (Node.js) or LAMP STACK (Wordpress, Drupal)</h3>
+          <table style="font-size:0.7em">
+            <tr>
+              <td>Technology</td>
+              <td>Talent</td>
+              <td>Hosting</td>
+              <td>Security / Downtime risk</td>
+              <td>Complexity</td>
+              <td>Future proof</td>
+            </tr>
+            <tr>
+              <td>Linux</td>
+              <td class="g"></td>
+              <td class="g">$</td>
+              <td class="g">Low</td>
+              <td class="g">Low</td>
+              <td class="g">Very long</td>
+            </tr>
+            <tr>
+              <td>Apache, Node.js Express</td>
+              <td class="g"></td>
+              <td class="g">$</td>
+              <td class="g">Low</td>
+              <td class="g">Low</td>
+              <td class="g">Very long</td>
+            </tr>
+            <tr>
+              <td>MySQL, Mongo (Database)</td>
+              <td class="y">$$</td>
+              <td class="y">$$</td>
+              <td class="y">Medium</td>
+              <td class="g">Low</td>
+              <td class="g">Very long</td>
+            </tr>
+            <tr>
+              <td>PHP, Node.js</td>
+              <td class="y">$$</td>
+              <td class="y">$$</td>
+              <td class="y">Medium</td>
+              <td class="r">High</td>
+              <td class="y">5 years</td>
+            </tr>
+            <tr>
+              <td>CMS (Drupal, Wordpress, other)</td>
+              <td class="r">$$$</td>
+              <td class="r">$$$</td>
+              <td class="r">High</td>
+              <td class="r">Very high</td>
+              <td class="r">3 years</td>
+            </tr>
+            <tr>
+              <td>Caching (cloudflare, varnish)</td>
+              <td class="g">$</td>
+              <td class="y">$$</td>
+              <td class="g">Low</td>
+              <td class="r">High</td>
+              <td class="g">Very long</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Static Site Generator (Jekyll/Netlify, Hugo, Gatsby...)</h3>
+          <table style="font-size:0.7em">
+            <tr>
+              <td>Technology</td>
+              <td>Talent</td>
+              <td>Hosting</td>
+              <td>Security / Downtime risk</td>
+              <td>Complexity</td>
+              <td>Future proof</td>
+            </tr>
+            <tr>
+              <td>Linux</td>
+              <td class="g"></td>
+              <td class="g">$</td>
+              <td class="g">Low</td>
+              <td class="g">Low</td>
+              <td class="g">Very long</td>
+            </tr>
+            <tr>
+              <td>Apache, Nginx, GitHub pages</td>
+              <td class="g"></td>
+              <td class="g">$</td>
+              <td class="g">Low</td>
+              <td class="g">Low</td>
+              <td class="g">Very long</td>
+            </tr>
+            <tr>
+              <td>Jekyll build server</td>
+              <td class="y">$$</td>
+              <td class="y">$$</td>
+              <td class="y">Medium</td>
+              <td class="g">Low</td>
+              <td class="g">Very long</td>
+            </tr>
+            <tr>
+              <td>CMS (NetlifyCMS) &amp; auth server</td>
+              <td class="y">$$</td>
+              <td style="background:#7FFF00;color:black;">$</td>
+              <td class="y">Medium for backend, very low for frontend</td>
+              <td class="g">Low</td>
+              <td class="g">Very long</td>
+            </tr>
+            <tr>
+              <td>No caching, it's static!</td>
+              <td class="g"></td>
+              <td class="g">$</td>
+              <td class="g">Low</td>
+              <td class="g">Low</td>
+              <td class="g">Very long</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Comparing server stacks with SSGs</h3>
+          <table style="font-size:0.5em">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Server stacks</th>
+                <th>Static Site Generators</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Examples</td>
+                <td>LAMP, MERN, Node.js, Wordpress, Drupal</td>
+                <td>Hugo, Jekyll, NetlifyCMS, Gatsby</td>
+              </tr>
+              <tr>
+                <td>Dating site</td>
+                <td class="g">Yes</td>
+                <td class="r">No</td>
+              </tr>
+              <tr>
+                <td>The next Reddit</td>
+                <td class="g">Yes</td>
+                <td class="r">No</td>
+              </tr>
+              <tr>
+                <td>Neighborhood florist</td>
+                <td class="y">Yes, but overkill</td>
+                <td class="g">Yes</td>
+              </tr>
+              <tr>
+                <td>Fortune 500 company front-end site</td>
+                <td class="y">Yes, but a money pit</td>
+                <td class="g">Yes (see examples)</td>
+              </tr>
+              <tr>
+                <td>Examples</td>
+                <td>LinkedIn, Uber, Tesla, NCAA</td>
+                <td><a href="https://jekyllrb.com/showcase/" target="_blank">Jekyll showcase</a>, Bitcoin.org, devices.netflix.com, Nike, <a target="_blank" href="https://www.netlify.com/topics/sites/">Netlify Examples</a></td>
+              </tr>
+              <tr>
+                <td>Front-end limitation</td>
+                <td class="g">None, but hard to implement</td>
+                <td class="g">None, it&#39;s basically HTML, JS, CSS</td>
+              </tr>
+              <tr>
+                <td>Back-end limitations</td>
+                <td class="g">None, but hard to implement</td>
+                <td class="y">No user roles, no visitor-created content (no dating sites), images are currently not optimized (e.g. a 8Mb image will not automatically be optimized to 300k*)</td>
+              </tr>
+              <tr>
+                <td>Development cost (basic)</td>
+                <td class="r">20,000$</td>
+                <td class="g">2,000$</td>
+              </tr>
+              <tr>
+                <td>Monthly cost (hosting, maintenance)</td>
+                <td class="r">500$</td>
+                <td class="g">50$</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>Server stacks: 24/7 expensive servers</h2>
+          <img src="images/server.png" />
+        </section>
+
+        <section>
+          <h2>Static sites</h2>
+          <img src="images/static.png" />
+        </section>
+
+        <section>
+          <h2>3rd party services, bridging the gap</h2>
+          <img src="images/services.png" />
+        </section>
+
+        <section>
+          <h2>Dcycle</h2>
+          <h3>Static stacks are cheaper than server stacks</h3>
+        </section>
+
+      </div>
+    </div>
+
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>
